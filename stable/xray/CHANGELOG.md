@@ -22,6 +22,8 @@ All changes to this chart will be documented in this file
 ## [6.4.1] - Nov 10, 2020
 * Pass system.yaml via external secret for advanced usecases
 * Bugfix - stateful set not picking up changes to database secrets
+* Expose Prometheus metrics via a scrape annotations or ServiceMonitor
+* Fluentd configuration added (https://github.com/jfrog/log-analytics-prometheus) 
 
 ## [6.4.0] - Nov 9, 2020
 * Update Xray to version 3.11.1 - [Release Notes](https://www.jfrog.com/confluence/display/JFROG/Xray+Release+Notes#XrayReleaseNotes-Xray3.11)

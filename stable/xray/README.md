@@ -343,6 +343,25 @@ server:
     ## Custom volume comes here ##
 ```
 
+Prometheus Metrics
+If you want to enable Prometheus metrics you can use the metrics configuration options. Enabling this option requires that the Promtheus Operator already be deployed and the associated CRDs created.
+
+The simplest way is to install Artifactory with the following command:
+
+helm upgrade --install xray --namespace xray --set metrics.enabled=true center/jfrog/xray
+This will create a new service exposing the Prometheus metrics for the Prometheus Community to start scraping. (For Promethus Operator and ServiceMonitor check below)
+
+helm upgrade --install artifactory --namespace artifactory --set metrics.enabled=true --set metrics.serviceMonitor.enabled=true center/jfrog/artifactory
+This will create a new service exposing the Prometheus metrics as well as a ServiceMonitor object for the Prometheus Operator to start scraping.
+
+NOTE: Enabling this does NOT create a container which will actually parse the log files for metrics. See the Fluentd section below.
+
+Fluentd
+The suggested way to parse the log files for metrics is to install Fluentd as a sidecar container. This can be done with the fluentd configuration options.
+
+helm upgrade --install xray --namespace xray --set fluentd.enabled=true center/jfrog/xray
+This will install Artifactory with Fluentd running as a sidecar container sharing the persistent volume where the log files are written.
+
 ## Useful links
 - https://www.jfrog.com/confluence/display/XRAY/Xray+High+Availability
 - https://www.jfrog.com/confluence/display/EP/Getting+Started
