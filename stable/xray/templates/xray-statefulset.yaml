@@ -652,6 +652,9 @@ spec:
       {{- if .Values.fluentd.enabled }}
       - name: fluentd
         image: "{{ .Values.fluentd.image.repository }}:{{ .Values.fluentd.image.tag }}"
+        ports:
+        - containerPort: 24231
+          name: fluentd
         volumeMounts:
           - mountPath: /opt/bitnami/fluentd/conf/
             name: fluentd-config
