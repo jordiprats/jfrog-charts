@@ -39,7 +39,7 @@ spec:
       annotations:
         prometheus.io/path: "/metrics"
         prometheus.io/scrape: "true"
-        prometheus.io/port: "24231"      
+        prometheus.io/port: "24231"
         checksum/database-secrets: {{ include (print $.Template.BasePath "/xray-database-secrets.yaml") . | sha256sum }}
         checksum/systemyaml: {{ include (print $.Template.BasePath "/xray-system-yaml.yaml") . | sha256sum }}
         {{- with .Values.analysis.annotations }}
